@@ -1,3 +1,5 @@
+# zshrc file for my work Mac.
+
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/bblinderman/.oh-my-zsh
 
