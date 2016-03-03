@@ -1,0 +1,13 @@
+max-items 10
+set auto-reload yes
+set browser %u
+set browser
+set browser lynx
+set browser /Applications/Google\ Chrome
+set browser=/Applications/Google\ Chrome
+source
+dumpconfig
+set browser chrome
+set browser lynx
+open-in-browser
+q

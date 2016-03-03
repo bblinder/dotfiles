@@ -1,0 +1,8 @@
+browser /opt/homebrew-cask/Caskroom/vivaldi/1.0.303.52/Vivaldi.app/Contents/MacOS/Vivaldi 
+color listnormal_unread cyan black
+datetime-format "%b %d %R"
+max-items 20
+keep-articles-days 3
+show-read-articles yes
+mark-as-read-on-hover yes
+
