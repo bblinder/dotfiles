@@ -109,8 +109,8 @@ alias thesaurus='~/Github/home-brews/thesaurus.sh'
 
 [[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
 
-alias blinderpass='ssh -i ~/.ssh/blinderpass_rsa pi@69.122.42.132'
-alias blinderpass_sshfs='sshfs pi@69.122.42.132:/media/USBHDD1/shares SSHFS -o IdentityFile=/Users/bblinderman/.ssh/blinderpass_rsa'
+alias blinderpass='ssh -i ~/.ssh/blinderpass_rsa pi@i[home_server_pi]'
+alias blinderpass_sshfs='sshfs pi@[home_server_pi]:/media/USBHDD1/shares SSHFS -o IdentityFile=/path/to/keyfile'
 
 
 transfer() { if [ $# -eq 0 ]; then echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
