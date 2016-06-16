@@ -1,5 +1,3 @@
-# zshrc file for my work Mac.
-
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/bblinderman/.oh-my-zsh
 
@@ -99,8 +97,6 @@ alias restart_wifi='sudo ifconfig en0 down ; echo "Restarting WiFi..." ; sleep 4
 
 alias youtube_download='~/Github/home-brews/Youtube_Downloader.sh'
 
-alias thesaurus='~/Github/home-brews/thesaurus.sh'
-
 alias user_package_update='~/Github/home-brews/user_installed_crap.sh'
 
 alias ENEMA='sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
@@ -108,6 +104,14 @@ alias ENEMA='sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
 alias bulk_git_update='for dir in ~/Github/* ; do (cd "$dir" && grup && git pull); done'
 
 alias ansiweather='ansiweather -l Brooklyn,NY -u imperial -f 5 -d true'
+
+alias thesaurus='~/Github/home-brews/thesaurus.sh'
+
+[[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
+
+alias blinderpass='ssh -i ~/.ssh/blinderpass_rsa pi@69.122.42.132'
+alias blinderpass_sshfs='sshfs pi@69.122.42.132:/media/USBHDD1/shares SSHFS -o IdentityFile=/Users/bblinderman/.ssh/blinderpass_rsa'
+
 
 transfer() { if [ $# -eq 0 ]; then echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
 	tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; }; alias transfer=transfer
