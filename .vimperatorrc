@@ -1,0 +1,5 @@
+" Setting 'smart order' for hint characters
+set hintchars=hjklasdfgyuiopqwertnmzxcvb
+
+" Keeping colorscheme at 'solarized dark'
+colorscheme solarized_dark
