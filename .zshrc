@@ -86,32 +86,53 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export PATH="/usr/local/sbin:$PATH"
 
-eval "$(thefuck --alias)"
-# You can use whatever you want as an alias, like for Mondays:
-eval "$(thefuck --alias FUCK)"
+eval $(thefuck --alias)
 
 alias cwd='open -a Finder "$(pwd)"'
 alias permissions_repair='sudo diskutil repairPermissions /'
 
 alias restart_wifi='sudo ifconfig en0 down ; echo "Restarting WiFi..." ; sleep 4 ; echo "Done." ; sudo ifconfig en0 up'
 
-alias youtube_download='~/Github/home-brews/Youtube_Downloader.sh'
+alias youtube_download='~/Github/home-brews/Youtube_Downloader.py'
 
 alias user_package_update='~/Github/home-brews/user_installed_crap.sh'
 
 alias ENEMA='sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
 
-alias bulk_git_update='for dir in ~/Github/* ; do (cd "$dir" && grup && git pull); done'
+alias bulk_git_update='for dir in ~/Github/* ; do (cd "$dir" && grup && git pull && git gc --auto); done'
 
-alias ansiweather='ansiweather -l Brooklyn,NY -u imperial -f 5 -d true'
+alias weather='curl -s wttr.in/brooklyn'
 
 alias thesaurus='~/Github/home-brews/thesaurus.sh'
 
 [[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
 
-alias blinderpass='ssh -i ~/.ssh/blinderpass_rsa pi@i[home_server_pi]'
-alias blinderpass_sshfs='sshfs pi@[home_server_pi]:/media/USBHDD1/shares SSHFS -o IdentityFile=/path/to/keyfile'
+alias blinderpass='ssh -i ~/.ssh/blinderpass_rsa pi@69.119.88.113'
+alias blinderpass_sshfs='sshfs pi@69.119.88.113:/media/USBHDD1/shares SSHFS -o IdentityFile=/Users/bblinderman/.ssh/blinderpass_rsa'
+
+alias caps_convert="tr '[:upper:]' '[:lower:]'"
+
+alias lepton_compress='/Users/bblinderman/Tools/lepton_compression.sh'
+
+alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
+
+alias vim='mvim'
+
+alias appstore_downloads='mdfind kMDItemAppStoreHasReceipt=1'
 
 
-transfer() { if [ $# -eq 0 ]; then echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
+transfer() { if [ $# -eq 0 ]; then echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi
 	tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; }; alias transfer=transfer
+
+
+man() {
+		env \
+			LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+			LESS_TERMCAP_md=$(printf "\e[1;31m") \
+			LESS_TERMCAP_me=$(printf "\e[0m") \
+			LESS_TERMCAP_se=$(printf "\e[0m") \
+			LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+			LESS_TERMCAP_ue=$(printf "\e[0m") \
+			LESS_TERMCAP_us=$(printf "\e[1;32m") \
+				man "$@"
+			}
