@@ -107,12 +107,10 @@ alias thesaurus='~/Github/home-brews/thesaurus.sh'
 
 [[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
 
-alias blinderpass='ssh -i ~/.ssh/blinderpass_rsa pi@69.119.88.113'
-alias blinderpass_sshfs='sshfs pi@69.119.88.113:/media/USBHDD1/shares SSHFS -o IdentityFile=/Users/bblinderman/.ssh/blinderpass_rsa'
+alias blinderpass='ssh -i ~/.ssh/blinderpass_rsa pi@[ip_address] -o ServerAliveInterval=5 -o ServerAliveCountMax=1'
+alias blinderpass_sshfs='sshfs pi@[ip_address]:/path/to/sshfs/directory SSHFS -o IdentityFile=/Users/bblinderman/.ssh/blinderpass_rsa'
 
 alias caps_convert="tr '[:upper:]' '[:lower:]'"
-
-alias lepton_compress='/Users/bblinderman/Tools/lepton_compression.sh'
 
 alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
 
