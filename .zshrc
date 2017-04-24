@@ -89,7 +89,7 @@ export PATH="/usr/local/sbin:$PATH"
 eval $(thefuck --alias)
 
 alias cwd='open -a Finder "$(pwd)"'
-alias permissions_repair='sudo diskutil repairPermissions /'
+alias permissions_repair='sudo diskutil repairPermissions /' # Apparently only works on Mac OS X 10.10 and below.
 
 alias restart_wifi='sudo ifconfig en0 down ; echo "Restarting WiFi..." ; sleep 4 ; echo "Done." ; sudo ifconfig en0 up'
 
@@ -118,6 +118,7 @@ alias vim='mvim'
 
 alias appstore_downloads='mdfind kMDItemAppStoreHasReceipt=1'
 
+alias Cert_Check='~/Github/home-brews/cert_check.sh'
 
 transfer() { if [ $# -eq 0 ]; then echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi
 	tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; }; alias transfer=transfer
