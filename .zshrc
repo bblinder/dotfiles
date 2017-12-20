@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/bblinderman/.oh-my-zsh
+export ZSH=/Users/bblinder/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -89,7 +89,7 @@ export PATH="/usr/local/sbin:$PATH"
 eval $(thefuck --alias)
 
 alias cwd='open -a Finder "$(pwd)"'
-alias permissions_repair='sudo diskutil repairPermissions /' # Apparently only works on Mac OS X 10.10 and below.
+alias permissions_repair='sudo diskutil repairPermissions /'
 
 alias restart_wifi='sudo ifconfig en0 down ; echo "Restarting WiFi..." ; sleep 4 ; echo "Done." ; sudo ifconfig en0 up'
 
@@ -107,21 +107,36 @@ alias thesaurus='~/Github/home-brews/thesaurus.sh'
 
 [[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
 
-alias blinderpass='ssh -i ~/.ssh/blinderpass_rsa pi@[ip_address] -o ServerAliveInterval=5 -o ServerAliveCountMax=1'
-alias blinderpass_sshfs='sshfs pi@[ip_address]:/path/to/sshfs/directory SSHFS -o IdentityFile=/Users/bblinderman/.ssh/blinderpass_rsa'
+alias blinderpass='ssh -i ~/.ssh/[private key] -p [port] -L [port]:192.168.1.8:[port] -L [port]:192.168.1.8:[port] pi@[hostname or IP address]'
+alias blinderpass_sshfs='sshfs -oIdentityFile=~/.ssh/[private key] pi@blindpass.servebeer.com:/path/to/HDD SSHFS'
+
 
 alias caps_convert="tr '[:upper:]' '[:lower:]'"
 
 alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
 
-alias vim='mvim'
+#alias vim='mvim'
+
+alias rtv='rtv --enable-media'
 
 alias appstore_downloads='mdfind kMDItemAppStoreHasReceipt=1'
 
 alias Cert_Check='~/Github/home-brews/cert_check.sh'
 
+alias Akamai_Batch_Search='/opt/blindy_akamai_scripts/batch_search.sh'
+
 alias freewifi="sudo ifconfig en0 ether `openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'`"
 
+alias jabber_connect='/opt/blindy_akamai_scripts/jabber_reconnect.sh'
+
+alias hn_view='while read p; do hn view $p -bc ; done < hn_list.txt'
+
+alias akamai_md5_checksum='ssh-keygen -l -E md5 -f'
+source /usr/local/share/antigen/antigen.zsh
+
+alias gkill='~/go/bin/gkill'
+
+alias cat='/usr/local/bin/ccat'
 
 transfer() { if [ $# -eq 0 ]; then echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi
 	tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; }; alias transfer=transfer
@@ -138,3 +153,13 @@ man() {
 			LESS_TERMCAP_us=$(printf "\e[1;32m") \
 				man "$@"
 			}
+
+
+# Import colorscheme from 'wal'
+# &   # Run the process in the background.
+# ( ) # Hide shell job control messages.
+(wal -r &)
+# If the command above doesn't work,
+# try this alternative.
+#setsid wal -r
+
